@@ -22,6 +22,10 @@ export class PictureCommand extends Command {
   defaultName: string = 'picture'
   datasetDefinition: DatasetDefinition = new DatasetDefinition()
 
+  initEvent: string = 'mousedown'
+  modifyEvent: string = 'mousemove'
+  endEvent: string = 'mouseup'
+
   constructor(public name: string, private implementation: PictureCommandInterface) {
     super()
     this.shortcutKey = implementation.shortcutKey

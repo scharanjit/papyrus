@@ -1,20 +1,21 @@
 import {Command} from 'src/dvu/core/command'
 import {ValueType} from 'src/dvu/core/data/data_definition'
+import Summary from 'src/dvu/core/summary'
 
-export class Step {
+export default class Expression {
   constructor(public command: Command, public data) {
 
   }
 
-  addParameter(name: String, value: ValueType) {
+  addParameter(name: string, value: ValueType) {
     this.data[name] = value
   }
-  
+
   isValid(): boolean {
     return this.command.validate(this.data)
   }
-  
-  getSummary() {
+
+  getSummary(): Summary {
     return this.command.getSummary(this.data)
   }
 

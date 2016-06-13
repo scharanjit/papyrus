@@ -1,20 +1,16 @@
 import { Point } from '../geometry/cartesian_system'
-import { CommandType } from '..//enums/command_types'
+import { CommandType } from '../enums/command_types'
 
-export class Command {
-  type: CommandType
-  shortcutKey: string
-  initEvent: string = 'mousedown'
-  modifyEvent: string = 'mousemove'
-  endEvent: string = 'mouseup'
-
+export default class Command {
   name: string = 'unnamed'
+  shortcutKey: string
+  type: CommandType
 
   validate(data: {}): boolean {
     return true
   }
 
-  execute(data, depth) {
+  execute(data, depth: number = 0) {
 
   }
   

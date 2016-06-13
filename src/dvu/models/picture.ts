@@ -11,7 +11,9 @@ export interface Picture {
   rotate: (initPoint: Point, endPoint: Point) => any
   scale: (initPoint: Point, endPoint: Point) => any
   duplicate: () => Picture
+  
   getHandle: () => Element
+  getInnerElements: () => Element[]
 }
 
 export abstract class AbstractPicture implements Picture {
@@ -53,6 +55,10 @@ export abstract class AbstractPicture implements Picture {
   
   getHandle(): Element {
     return SVG.createGroup([this.boundingElement, ...this.magnets])
+  }
+
+  getInnerElements(): Element[] {
+    return [].slice.call(this.element)
   }
 
   /**

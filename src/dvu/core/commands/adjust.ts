@@ -5,5 +5,5 @@ export interface AdjustCommandInterface extends CommandInterface {
   
 }
 
-export class AdjustCommand extends Command {
+export default class AdjustCommand extends Command {
 }
