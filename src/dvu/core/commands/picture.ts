@@ -45,10 +45,7 @@ export class PictureCommand extends Command {
       context.instanceCount = this.implementation.noOfInstances
     }
 
-    return {
-      name: context.name || `${this.implementation.name}-${context.instanceCount}` || `${this.defaultName}-${context.instanceCount}`,
-      element
-    }
+    return
   }
 
   redraw(element: Element, context: PictureContext, depth: number = 0) {

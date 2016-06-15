@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from 'angular2/core'
 import { PanelComponent as Panel } from '../generic/panel'
 import { StepSummary } from './step_summary'
-import { Step } from 'src/dvu/core/step'
+import { Expression } from '../../../dvu/core/code/expression'
 
 @Component({
   selector: 'pa-steps',
@@ -18,7 +18,7 @@ import { Step } from 'src/dvu/core/step'
   directives: [Panel, StepSummary]
 })
 export class PapyrusSteps {
-  @Input() steps: Step[] = []
+  @Input() steps: Expression[] = []
   
   @Output() selectedStep: EventEmitter<any> = new EventEmitter()
   

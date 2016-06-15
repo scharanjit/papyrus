@@ -1,6 +1,7 @@
 import AdjustCommand from './adjust'
-import { Scope, ScopeResolver } from 'src/dvu/data/scope'
-import { Point } from 'src/dvu/geometry/cartesian_system'
+import {Scope, ScopeResolver} from "src/dvu/core/data/scope"
+import {Picture} from "src/dvu/models/picture"
+import {Point} from "src/dvu/geometry/cartesian_system"
 
 interface AdjustCommandDataInterface {
   pictureName: string

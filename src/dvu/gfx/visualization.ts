@@ -1,5 +1,5 @@
 import { PictureCommand, PictureCommandInterface } from '../core/commands/picture'
-import { Step } from '../core/step'
+import { Expression } from '../core/code/expression'
 import { DatasetDefinition } from '../core/data/dataset_definition'
 import { PictureContext } from '../geometry/picture_context'
 import { SVG } from '../core/helpers/svg'
@@ -10,7 +10,7 @@ export class CompositeVisualization extends PictureCommand {
   name: string = 'unnamed'
   datasetDefinition: DatasetDefinition = new DatasetDefinition()
   dimensions: Dimensions = { width: 0, height: 0 }
-  steps: Step[] = []
+  steps: Expression[] = []
 
   constructor() {
     super(this.name, this.getPictureCommandInterface())

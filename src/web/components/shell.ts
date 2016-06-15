@@ -8,16 +8,18 @@ import { FullLength } from '../directives/all'
   selector: 'papyrus-shell',
   template: `
     <div class="row row-no-padding">
-      <pa-visualizations class="col col-md-12"
-        [visualizations]="visualizations"
-        (onSelect)="select($event)"
-      >
-      </pa-visualizations>
-    </div>
-    <div class="editor-space row row-no-padding">
-      <pa-editor [visualization]="activeVisualization" class="col col-md-12" full-length>
-      
-      </pa-editor>
+      <div class="col col-md-1">
+        <pa-visualizations
+          [visualizations]="visualizations"
+          (onSelect)="select($event)"
+        >
+        </pa-visualizations>
+      </div>
+      <div class="editor-space col col-md-11">
+        <pa-editor [visualization]="activeVisualization" full-length>
+        
+        </pa-editor>
+      </div>
     </div>
   `,
   directives: [PapyrusVisualizations, PapyrusEditor, FullLength]

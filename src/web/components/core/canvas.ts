@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from 'angular2/core'
 import { Command } from '../../../dvu/core/command'
 import { CompositeVisualization } from '../../../dvu/gfx/visualization'
-import { Step } from '../../../dvu/core/step'
+import { Expression } from '../../../dvu/core/code/expression'
 import { StepSummary } from '../core/step_summary'
 import { VisualizationCanvas } from '../core/visualization_canvas'
 import { CommandBar } from '../core/command_bar'
-import {PictureCommand} from 'src/dvu/core/commands/picture'
-import {PictureContext} from 'src/dvu/geometry/picture_context'
+import { PictureCommand } from 'src/dvu/core/commands/picture'
+import { PictureContext } from 'src/dvu/geometry/picture_context'
 
 @Component({
   selector: 'pa-canvas',
@@ -27,16 +27,16 @@ import {PictureContext} from 'src/dvu/geometry/picture_context'
 export class PapyrusCanvas implements OnChanges {
   @Input() commands: Command[]
   @Input() visualization: CompositeVisualization
-  @Input() currentStep: Step
+  @Input() currentStep: Expression
 
   selectedCommand: Command
-  previousStep: Step = null
-  currentStep: Step = null
+  previousStep: Expression = null
+  currentStep: Expression = null
 
   pictureContext: PictureContext
   currentElement: Element = null
 
-  @Output() steps: EventEmitter<Step> = new EventEmitter()
+  @Output() steps: EventEmitter<Expression> = new EventEmitter()
 
   constructor() {
   
@@ -86,7 +86,7 @@ export class PapyrusCanvas implements OnChanges {
       // If element has not already been drawn, draw else redraw (avoid creating new elements)
       if (!this.currentStep) {
         this.currentElement = command.execute(this.pictureContext).element
-        this.currentStep = new Step(command, this.pictureContext)
+        this.currentStep = new Expression(command, this.pictureContext)
       } else {
         command.redraw(this.currentElement, this.pictureContext)
       }
@@ -94,7 +94,7 @@ export class PapyrusCanvas implements OnChanges {
       this.pictureContext.end.x = e.x
       this.pictureContext.end.y = e.y
       if (this.pictureContext.end.x !== this.pictureContext.start.x || this.pictureContext.end.y !== this.pictureContext.start.y) {
-        this.visualization.steps.push(new Step(command, this.pictureContext))
+        this.visualization.steps.push(new Expression(command, this.pictureContext))
       }
 
       this.resetUserActions()

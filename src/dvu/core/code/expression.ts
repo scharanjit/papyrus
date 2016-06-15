@@ -1,6 +1,6 @@
-import {Command} from 'src/dvu/core/command'
-import {ValueType} from 'src/dvu/core/data/data_definition'
-import Summary from 'src/dvu/core/summary'
+import {Command} from '../command'
+import {ValueType} from '../data/data_definition'
+import Summary from '../summary'
 
 export default class Expression {
   constructor(public command: Command, public data) {

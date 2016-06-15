@@ -1,6 +1,6 @@
 import {PictureCommand} from 'src/dvu/core/commands/picture'
 import {DatasetDefinition} from 'src/dvu/core/data/dataset_definition'
-import {Step} from 'src/dvu/core/step'
+import {Expression} from '../core/code/expression'
 
 type Definition = string
 type Code = string
@@ -15,11 +15,11 @@ export interface PictureBuilderInterface {
 export class PictureBuilder implements PictureBuilderInterface {
   constructor(public _datasetDefinition: DatasetDefinition = new DatasetDefinition(), 
               public _measureDefinition: DatasetDefinition = new DatasetDefinition(), 
-              public _steps: Step[] = []) {
+              public _steps: Expression[] = []) {
     
   }
   
-  addStep(step: Step) {
+  addStep(step: Expression) {
     this._steps.push(step)
   }
   
@@ -35,7 +35,7 @@ export class PictureBuilder implements PictureBuilderInterface {
     const self = this
     
     return class Picture extends PictureCommand {
-      static steps: Step[] = self._steps
+      static steps: Expression[] = self._steps
       static datasetDefinition: DatasetDefinition = self._datasetDefinition
       static measureDefinition: DatasetDefinition = self._measureDefinition
 

@@ -1,5 +1,5 @@
 import { Component, Input } from 'angular2/core'
-import { Step } from '../../../dvu/core/step'
+import { Expression } from '../../../dvu/core/code/expression'
 
 @Component({
   selector: 'pa-step-summary',
@@ -11,5 +11,5 @@ import { Step } from '../../../dvu/core/step'
   `
 })
 export class StepSummary {
-  @Input() step: Step
+  @Input() step: Expression
 }

@@ -1,7 +1,6 @@
-import { Point } from '../geometry/cartesian_system'
-import { CommandType } from '../enums/command_types'
+import { CommandType } from 'src/dvu/enums/command_types'
 
-export default class Command {
+export class Command {
   name: string = 'unnamed'
   shortcutKey: string
   type: CommandType
@@ -15,6 +14,6 @@ export default class Command {
   }
   
   getSummary(data: {}): string {
-    return 'This method has not been overriden and should be done for all commands'
+    return 'This method has not been overridden and should be done for all commands'
   }
 }

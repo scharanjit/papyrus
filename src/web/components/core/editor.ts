@@ -5,7 +5,7 @@ import { PapyrusCanvas } from './canvas'
 import { FullLength } from 'src/web/directives/all'
 import { CompositeVisualization } from '../../../dvu/gfx/visualization'
 import { CommandService } from 'src/web/services/all'
-import { Step } from '../../../dvu/core/step'
+import { Expression } from '../../../dvu/core/code/expression'
 import { Command } from '../../../dvu/core/command'
  
 @Component({
@@ -32,7 +32,7 @@ export class PapyrusEditor {
   @Input()
   visualization: CompositeVisualization
   commands: Command[]
-  selectedStep: Step
+  selectedStep: Expression
   
   constructor(private commandService: CommandService) {
     this.commands = commandService.getCommands()
