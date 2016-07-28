@@ -2,9 +2,11 @@ pa-visualizations {
   width: 140px !important;
   height: 100%;
   overflow-y: auto;
+   border: 1px solid $secondary-color;
 
   pa-panel {
-    border-bottom: 1px solid $secondary-color;
+    // border-bottom: 1px solid $secondary-color;
+   
   }
   
   .content {
@@ -35,8 +37,13 @@ pa-visualizations {
   
   .vis-preview {
     background: $white;
+    
+    .del-icon {
+    position: absolute;
+    right:0;
+    }
   }
-  
+
   pa-create-vis {
     cursor: pointer;
     border: none;

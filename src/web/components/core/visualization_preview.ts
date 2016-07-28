@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef, OnChanges } from 'angular2/core'
+import { Component, Input, Output, AfterViewInit, ViewChild, ElementRef, OnChanges, EventEmitter } from 'angular2/core'
 import { CompositeVisualization } from '../../../dvu/gfx/visualization'
 import { FocusMe } from '../../directives/focus_me'
 import { PictureContext } from 'src/dvu/geometry/picture_context'
@@ -8,13 +8,18 @@ import { Observable } from 'rxjs/Rx'
   selector: 'pa-vis-preview',
   template: `
     <div class="vis-preview">
+
+       <div class="del-icon">
+         <i class="fa fa-close" (click)="removeVisualization()"></i>
+       </div>
+       
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid slice" width="96px" height="80px" #preview>
-      
-      </svg>
-    </div>
+     
+      </svg> 
+    </div>    
     <div>
       <div class="vis-name" *ngIf="!nameBeingEdited" (dblclick)="editName()">{{visualization?.name}}</div>
-      <input focus-me type="text" *ngIf="nameBeingEdited" [(ngModel)]="visualization.name" (blur)="saveName($event)" (keydown)="$event.keyCode === 13?saveName($event):undefined" />
+      <input focus-me type="text" *ngIf="nameBeingEdited" [(ngModel)]="visualization.name" (blur)="saveName($event)" (keydown)="$event.keyCode === 13?saveName($event):undefined" /> 
     </div>
   `,
   directives: [FocusMe]
@@ -25,6 +30,10 @@ export class VisualizationPreview implements OnChanges {
 
   nameBeingEdited: boolean = false
   previousName: string
+
+  @Output()
+  onRemove = new EventEmitter()
+
 
   @ViewChild('preview') preview: ElementRef
 
@@ -62,13 +71,20 @@ export class VisualizationPreview implements OnChanges {
     const preview = this.preview.nativeElement
     const pictureContext = new PictureContext({x:0, y:0}, {x:width,y:height})
     const element = this.visualization.execute(pictureContext).element
-
+  console.log("hey")
     preview.appendChild(element)
   }
 
   private clearPreview() {
+    console.log("hi")
     while (this.preview.nativeElement.firstChild) {
       this.preview.nativeElement.removeChild(this.preview.nativeElement.firstChild)
     }
+  }
+
+  removeVisualization() {
+    let visualization = this.visualization
+    this.onRemove.emit({ visualization })
+
   }
 }

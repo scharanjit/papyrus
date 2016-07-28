@@ -3,7 +3,6 @@ import { PanelComponent } from '../generic/panel'
 import { VisualizationPreview } from './visualization_preview'
 import { CompositeVisualization } from '../../../dvu/gfx/visualization'
 import { CommandService } from 'src/web/services/command'
-
 @Component({
   selector: 'pa-visualizations',
   template: `
@@ -13,11 +12,12 @@ import { CommandService } from 'src/web/services/command'
         [class.selected]="visualization === selected"
         [visualization]="visualization"
         [arity]="visualization?.steps.length"
+        (onRemove)="removeVisualization($event)"
       >
       
       </pa-vis-preview>
       <pa-create-vis (click)="create()">
-        <i class="fa fa-plus-circle"></i>
+      <i class="fa fa-plus-circle"></i> 
       </pa-create-vis>
     </pa-panel>
   `,
@@ -53,5 +53,11 @@ export class PapyrusVisualizations implements OnInit {
     this.visualizations.push(vis)
     this.commandService.addCommand(vis)
     this.select(vis)
+  }
+
+  removeVisualization(event) {
+   
+   var index= this.visualizations.indexOf(event.visualization);
+   this.visualizations.splice(index,1);
   }
 }

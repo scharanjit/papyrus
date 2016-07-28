@@ -16,16 +16,16 @@ import { FullLength } from '../directives/all'
       </pa-visualizations>
 
       <pa-editor [visualization]="activeVisualization" class="col-md-10" full-length>
-      
-      </pa-editor>
+     
+      </pa-editor>    
     </div>
   `,
   directives: [PapyrusVisualizations, PapyrusEditor, FullLength]
 })
-export class PapyrusShell {
+export class PapyrusShell  {
   visualizations: CompositeVisualization[] = []
   activeVisualization: CompositeVisualization = null
-  
+    
   select(e) {
     this.activeVisualization = e.selected
   }

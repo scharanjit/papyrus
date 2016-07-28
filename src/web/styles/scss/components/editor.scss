@@ -8,16 +8,14 @@ pa-editor {
 
 .sidebar {
   background: $xxl-color;
-  
   pa-panel > div {
-    border-right: 1px solid $secondary-color;
+    border: 1px solid $secondary-color;
   }
 }
 
 .command-bar {
   .command-set {
     padding: 4px 0;
-  
     &:empty {
       display: none;
     }
